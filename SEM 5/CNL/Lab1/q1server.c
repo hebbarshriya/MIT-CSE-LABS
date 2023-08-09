@@ -18,7 +18,7 @@ int main(){
     listen(sockfd,5);
     while(1){
         char buf[256];
-        printf("Server Waiting");
+        printf("Server Waiting\n");
         clilen = sizeof(clilen);
         newsockfd=accept(sockfd,(struct sockaddr*)&cliaddr, &clilen);
         n=read(newsockfd, buf,sizeof(buf));
