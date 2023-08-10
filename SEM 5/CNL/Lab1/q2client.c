@@ -7,7 +7,9 @@
 #include<string.h>
 int main(){
     int len,result,sockfd,n=1;
-    struct sockaddr_in address;
+    
+    while (1) {
+        struct sockaddr_in address;
     char ch[256]="Start",buf[256];
 
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -22,7 +24,6 @@ int main(){
         perror("\nCLIENT ERROR");
         exit(1);
     }
-    while (1) {
         printf("\nENTER MESSAGE\t");
         gets(ch);
         ch[strlen(ch)]='\0';
@@ -40,4 +41,5 @@ int main(){
             puts(buf);
         }
     }
+    close(sockfd);
 }
