@@ -1,3 +1,4 @@
+
 #include<sys/types.h>
 #include<sys/socket.h>
 #include<stdio.h>
@@ -10,7 +11,7 @@ int main(){
     
     while (1) {
         struct sockaddr_in address;
-    char ch[256]="Start",buf[256];
+    char ch[256]="",buf[256];
 
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
 
@@ -27,19 +28,17 @@ int main(){
         printf("\nENTER MESSAGE\t");
         gets(ch);
         ch[strlen(ch)]='\0';
-     
+
+        write(sockfd,ch,strlen(ch));
         if(strcmp(ch,"Stop")==0){
             printf("Terminating");
             break;
         }
-        write(sockfd,ch,strlen(ch));
-    
-
         printf("STRING SENT BACK FROM SERVER IS ..... ");
-        while(n){
-            n=read(sockfd,buf,sizeof(buf));
-            puts(buf);
-        }
+        
+        read(sockfd,buf,sizeof(buf));
+        puts(buf);
+        
     }
     close(sockfd);
 }
