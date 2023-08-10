@@ -69,8 +69,10 @@ int main(){
     bind(sockfd, (struct sockaddr*)&seraddr,sizeof(seraddr));
 
     listen(sockfd,5);
+    
     while(1){
-        char buf[256]="start";
+        
+        char buf[256]="";
         printf("Server Waiting\n");
         clilen = sizeof(clilen);
         newsockfd=accept(sockfd,(struct sockaddr*)&cliaddr, &clilen);
@@ -83,10 +85,11 @@ int main(){
             break;
         }
         removeDuplicates(buf);
-        n = write(newsockfd,buf,sizeof(buf));
+        write(newsockfd,buf,sizeof(buf));
         close(newsockfd);
         
         }
+        
         close(sockfd);
         return 0;
     
