@@ -79,13 +79,15 @@ int main(){
         printf("Message from client: %s\n",buf);
         buf[strcspn(buf, "\n")] = '\0';
         if ((strcmp(buf,"Stop")==0)) {
-            close(newsockfd);
+            printf("Terminated\n");
             break;
         }
         removeDuplicates(buf);
         n = write(newsockfd,buf,sizeof(buf));
+        close(newsockfd);
         
         }
+        close(sockfd);
         return 0;
     
 
